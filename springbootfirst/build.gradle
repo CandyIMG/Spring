@@ -1,0 +1,42 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'war'
+
+group = 'com.kenny.spring'
+version = '0.0.1-SNAPSHOT'
+
+description = """springbootfirst"""
+
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+
+
+repositories {
+
+    maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version:'1.5.10.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version:'1.5.10.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version:'1.5.10.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.5.10.RELEASE'
+    compile group: 'org.projectlombok', name: 'lombok', version:'1.16.20'
+    runtime group: 'mysql', name: 'mysql-connector-java', version:'5.1.45'
+    testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'1.5.10.RELEASE') {
+        exclude(module: 'commons-logging')
+    }
+}
+
+sourceSets {
+    main.java.srcDirs=['src/main/java']
+    main.resources.srcDirs=['src/main/resources', 'src/main/resources-' + target]
+}
+
+war {
+    archiveName 'api.war'
+    from 'webapp' // adds a file-set to the root of the archive
+}
