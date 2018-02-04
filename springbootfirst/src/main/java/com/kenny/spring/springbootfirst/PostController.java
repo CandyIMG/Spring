@@ -24,7 +24,7 @@ public class PostController {
 
     @RequestMapping(value="/posts/new", method=RequestMethod.GET)
     public String newPost( Model model ) {
-        model.addAttribute( "post", new Post() );
+        model.addAttribute("post", new Post());
         return "new";
     }
 
