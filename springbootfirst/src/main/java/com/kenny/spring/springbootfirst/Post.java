@@ -1,8 +1,14 @@
 package com.kenny.spring.springbootfirst;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
+@Entity
+@Table(name="POST", schema="test")
 public class Post {
+    @Id
     private String id;
     private String name;
     private String address;
